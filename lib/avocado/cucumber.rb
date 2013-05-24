@@ -8,7 +8,15 @@ World(Avocado::World)
 #   Cucumber::Ast::OutlineTable::ExampleRow will extend Avocado::ExampleRow
 # These extensions provide a common interface for interacting with the scenario properties,
 # so type-checking can be ignored while storing each scenario.
-After do |scenario|
+#After do |scenario|
+  #extension = "Avocado::#{scenario.class.name.demodulize}".safe_constantize
+  #if extension
+    #scenario.extend(extension)
+    #Avocado.store scenario, last_request_if_one_was_made, last_response_if_one_was_made
+  #end
+#end
+
+AfterStep do |scenario|
   extension = "Avocado::#{scenario.class.name.demodulize}".safe_constantize
   if extension
     scenario.extend(extension)
